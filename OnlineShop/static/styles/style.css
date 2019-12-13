@@ -744,7 +744,7 @@ x:-o-prefocus, .lb-overlay img {
   display: block;
   line-height: 2em;
 }
-.account-top input[type="text"], .account-top input[type="password"] {
+.account-top input[type="text"], .account-top input[type="password"], .account-top input[type="email"] {
   padding: 0.7em;
   width: 85%;
   background: none;
@@ -836,7 +836,7 @@ a.create:hover, .account-top input[type="submit"]:hover, .register-but form inpu
 	display: block;
 	text-transform: uppercase;
 }
-.register-top-grid input[type="text"], .register-bottom-grid input[type="password"] {
+.register-top-grid input[type="text"], .register-bottom-grid input[type="password"], .register-top-grid input[type="email"] {
 	border: 1px solid #EEE;
 	outline-color:#FF5B36;
 	width: 96%;
@@ -913,7 +913,7 @@ a.create:hover, .account-top input[type="submit"]:hover, .register-but form inpu
 .register-but{
 	margin-top:1em;
 }
-.register-but form input[type="submit"] {
+.register-but input[type="submit"] {
 	background:#F9D9BE;
 	color: #000;
 	font-size:1em;

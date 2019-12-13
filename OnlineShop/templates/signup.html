@@ -1,0 +1,65 @@
+{% extends 'mainpage.html' %}
+
+{% block main %}
+    <div class="account-in">
+        <div class="container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="register-top-grid">
+                    <h2>PERSONAL INFORMATION</h2>
+                    <div>
+                        <span>First Name<label>*</label></span>
+                        {{ form.first_name }}
+                        {% for error in form.first_name.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <span>Last Name<label>*</label></span>
+                        {{ form.last_name }}
+                        {% for error in form.last_name.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <span>Email Address<label>*</label></span>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="clearfix"></div>
+                    <a class="news-letter" href="#">
+                        <label class="checkbox">
+                            {{ form.subscribe }}
+                            <i></i>Sign Up for Newsletter
+                        </label>
+                    </a>
+                </div>
+                <div class="register-bottom-grid">
+                    <h2>LOGIN INFORMATION</h2>
+                    <div>
+                        <span>Password<label>*</label></span>
+                        {{ form.password1 }}
+                        {% for error in form.password1.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <span>Confirm Password<label>*</label></span>
+                        {{ form.password2 }}
+                        {% for error in form.password2.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"> </div>
+                <div class="register-but">
+                    <input type="submit" value="Sign up">
+                    <div class="clearfix"> </div>
+                </div>
+            </form>
+        </div>
+   </div>
+{% endblock%}

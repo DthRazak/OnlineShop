@@ -39,10 +39,17 @@
 					</select>
 					</div>
 					<ul class="header_user_info">
-						<a class="login" href="#">
+                        {% if not user.is_authenticated %}
+						<a class="login" href="/profile/login">
 							<i class="user"> </i>
 							<li class="user_desc">My Account</li>
 						</a>
+                        {% else %}
+                        <a class="login" href="/profile/logout">
+							<i class="user"> </i>
+							<li class="user_desc">{{ user.username }}</li>
+						</a>
+                        {% endif %}
 						<div class="clearfix"> </div>
 					</ul>
 					<!-- start search-->

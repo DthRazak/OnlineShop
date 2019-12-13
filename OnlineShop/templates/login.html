@@ -1,0 +1,35 @@
+{% extends 'mainpage.html' %}
+{% load staticfiles %}
+
+{% block main %}
+    <div class="account-in">
+        <div class="container">
+            <h3>Account</h3>
+            <div class="col-md-7 account-top">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div>
+                        <span>Email*</span>
+                        {{ form.email }}
+                    </div>
+                    <div>
+                        <span class="pass">Password*</span>
+                        {{ form.password }}
+                        {% for error in form.non_field_errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            <div class="col-md-5 left-account ">
+                <a href="#"><img class="img-responsive" src="{% static 'images/s4.jpg' %}" alt=""/></a>
+                <div class="five-in">
+                    <h1>35% </h1><span>discount</span>
+                </div>
+                <a href="signup" class="create">Create an account</a>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+   </div>
+{% endblock%}
