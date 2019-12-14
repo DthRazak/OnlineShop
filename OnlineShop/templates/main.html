@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="{% static 'styles/style.css' %}" rel='stylesheet' type='text/css' />
   <link href="{% static 'styles/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{% static 'styles/flexslider.css' %}" rel="stylesheet" type="text/css" media="all" />
 {% endblock %}
 {% block additional_fonts %}
   <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
@@ -18,6 +19,26 @@
   <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
   <script src="{% static 'scripts/jquery.easydropdown.js' %}"></script>
   <script src="{% static 'scripts/simpleCart.min.js' %}"> </script>
+  <script src="{% static 'scripts/easyResponsiveTabs.js' %}"> </script>
+  <script src="{% static 'scripts/jquery.flexslider.js' %}"> </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true   // 100% fit in a container
+        });
+    });
+    </script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).ready(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
 {% endblock %}
 {% block content %}
 	<div class="banner">
@@ -74,7 +95,7 @@
 			</div>
 			<div class="header_bottom">
 				<div class="logo">
-					<h1><a href="#"><span class="m_1">W</span>atches</a></h1>
+					<h1><a href="/"><span class="m_1">W</span>atches</a></h1>
 				</div>
 				<div class="menu">
 					<ul class="megamenu skyblue">

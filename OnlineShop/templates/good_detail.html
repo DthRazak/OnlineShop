@@ -1,0 +1,180 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block title %}Good detail{% endblock %}
+{% block main %}
+    <div class="men">
+        <div class="container">
+            <div class="col-md-9 single_top">
+                <div class="single_left">
+                    <div class="labout span_1_of_a1">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                <li data-thumb="{{ good.image.url }}">
+                                    <img src="{{ good.image.url }}" alt=""/>
+                                </li>
+{#                                <li data-thumb="images/s2.jpg">#}
+{#                                    <img src="images/s2.jpg"/>#}
+{#                                </li>#}
+{#                                <li data-thumb="images/s3.jpg">#}
+{#                                    <img src="images/s3.jpg"/>#}
+{#                                </li>#}
+{#                                <li data-thumb="images/s4.jpg">#}
+{#                                    <img src="images/s4.jpg"/>#}
+{#                                </li>#}
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cont1 span_2_of_a1 simpleCart_shelfItem">
+                        <h1>{{ good.name }}</h1>
+                        {% if good.in_stock %}
+                            <p class="availability">Availability: <span class="color">In stock</span></p>
+                        {% else %}
+                            <p class="availability">Availability: <span class="color">Not available</span></p>
+                        {% endif %}
+                        <div class="price_single">
+                            {% if good.price_acc is None or good.price_acc >= good.price %}
+                                <span class="actual">${{ good.price }}</span>
+                            {% else %}
+                                <span class="reducedfrom">${{ good.price }}</span>
+                                <span class="amount item_price actual">${{ good.price_acc }}</span><a href="#">click for offer</a>
+                            {% endif %}
+                        </div>
+                        <h2 class="quick">Quick Overview:</h2>
+                        <p class="quick_desc">{{ good.description }}</p>
+{#                        <div class="wish-list">#}
+{#                            <ul>#}
+{#                                <li class="wish"><a href="#">Add to Wishlist</a></li>#}
+{#                                <li class="compare"><a href="#">Add to Compare</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <ul class="size">#}
+{#                            <h3>Length</h3>#}
+{#                            <li><a href="#">32</a></li>#}
+{#                            <li><a href="#">34</a></li>#}
+{#                        </ul>#}
+                        <div class="quantity_box">
+                            <ul class="product-qty">
+                                <span>Quantity:</span>
+                                <select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                </select>
+                            </ul>
+                            <ul class="single_social">
+                                <li><a href=""><i class="fb1"> </i> </a></li>
+                                <li><a href=""><i class="tw1"> </i> </a></li>
+                                <li><a href=""><i class="g1"> </i> </a></li>
+                                <li><a href=""><i class="linked"> </i> </a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        {% if good.in_stock %}
+                            <a href="#" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1"
+                           target="_self">Add to cart</a>
+                        {% endif %}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="sap_tabs">
+                    <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                        <ul class="resp-tabs-list">
+                            <li class="resp-tab-item" aria-controls="tab_item-0" role="tab">
+                                <span>Product Description</span></li>
+                            <li class="resp-tab-item" aria-controls="tab_item-1" role="tab">
+                                <span>Additional Information</span></li>
+                            <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Reviews</span></li>
+                        </ul>
+                        <div class="resp-tabs-container">
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+                                <div class="facts">
+                                    <ul class="tab_list">
+                                        <li><a href="#">{{ good.description }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                                <div class="facts">
+                                    <ul class="tab_list">
+                                        <li><a href="#">{{ good.content }}</a></li>
+                                        <li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                <div class="facts">
+                                    <ul class="tab_list">
+                                        <li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                                            diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+                                            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+                                            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</a>
+                                        </li>
+                                        <li><a href="#">augue duis dolore te feugait nulla facilisi. Nam liber tempor
+                                            cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
+                                            placerat facer possim assum. Typi non habent claritatem insitam; est usus
+                                            legentis in iis qui facit eorum claritatem. Investigatione</a></li>
+                                        <li><a href="#">claritatem insitam; est usus legentis in iis qui facit eorum
+                                            claritatem. Investigationes demonstraverunt lectores leg</a></li>
+                                        <li><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum
+                                            claram, anteposuerit litterarum formas humanitatis per seacula quarta decima
+                                            et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari,
+                                            fiant sollemnes in futurum.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{#            <div class="col-md-3 tabs">#}
+{#                <h3 class="m_1">Related Products</h3>#}
+{#                <ul class="product">#}
+{#                    <li class="product_img"><img src="images/m5.jpg" class="img-responsive" alt=""/></li>#}
+{#                    <li class="product_desc">#}
+{#                        <h4><a href="#">quod mazim</a></h4>#}
+{#                        <p class="single_price">$66.30</p>#}
+{#                        <a href="#" class="link-cart">Add to Wishlist</a>#}
+{#                        <a href="#" class="link-cart">Add to Cart</a>#}
+{#                    </li>#}
+{#                    <div class="clearfix"></div>#}
+{#                </ul>#}
+{#                <ul class="product">#}
+{#                    <li class="product_img"><img src="images/m6.jpg" class="img-responsive" alt=""/></li>#}
+{#                    <li class="product_desc">#}
+{#                        <h4><a href="#">quod mazim</a></h4>#}
+{#                        <p class="single_price">$66.30</p>#}
+{#                        <a href="#" class="link-cart">Add to Wishlist</a>#}
+{#                        <a href="#" class="link-cart">Add to Cart</a>#}
+{#                    </li>#}
+{#                    <div class="clearfix"></div>#}
+{#                </ul>#}
+{#                <ul class="product">#}
+{#                    <li class="product_img"><img src="images/m2.jpg" class="img-responsive" alt=""/></li>#}
+{#                    <li class="product_desc">#}
+{#                        <h4><a href="#">quod mazim</a></h4>#}
+{#                        <p class="single_price">$66.30</p>#}
+{#                        <a href="#" class="link-cart">Add to Wishlist</a>#}
+{#                        <a href="#" class="link-cart">Add to Cart</a>#}
+{#                    </li>#}
+{#                    <div class="clearfix"></div>#}
+{#                </ul>#}
+{#                <ul class="product">#}
+{#                    <li class="product_img"><img src="images/m3.jpg" class="img-responsive" alt=""/></li>#}
+{#                    <li class="product_desc">#}
+{#                        <h4><a href="#">quod mazim</a></h4>#}
+{#                        <p class="single_price">$66.30</p>#}
+{#                        <a href="#" class="link-cart">Add to Wishlist</a>#}
+{#                        <a href="#" class="link-cart">Add to Cart</a>#}
+{#                    </li>#}
+{#                    <div class="clearfix"></div>#}
+{#                </ul>#}
+{#            </div>#}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+{% endblock %}

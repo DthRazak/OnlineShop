@@ -14,6 +14,9 @@ class Good(models.Model):
     featured = models.BooleanField(default=False, db_index=True, verbose_name="Recommended")
     image = models.ImageField(upload_to="goods/list", verbose_name="Main image")
 
+    def __str__(self):
+        return "{0}: {1}".format(self.category, self.name)
+
     def save(self, *args, **kwargs):
         try:
             this_record = Good.objects.get(pk=self.pk)

@@ -6,7 +6,7 @@
     <ul class="content-home" style="list-style-type:none">
         {% for good in goods %}
             <li class="col-sm-4">
-                <a href="single.html" class="item-link" title="">
+                <a href="/good/{{ good.id }}" class="item-link" title="">
                     <div class="bannerBox">
                         <img src="{{good.image.url}}" class="item-img" title="" alt="" width="100%" height="100%">
                         <div class="item-html">
