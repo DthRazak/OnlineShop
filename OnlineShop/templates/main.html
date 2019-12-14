@@ -12,8 +12,8 @@
 {% block additional_js %}
   <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
   function hideURLbar(){ window.scrollTo(0,1); } </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script type="text/javascript" src="{% static 'scripts/megamenu.js' %}"></script>
   <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
   <script src="{% static 'scripts/jquery.easydropdown.js' %}"></script>
@@ -85,16 +85,9 @@
 										<div class="h_nav">
 											<h4>Men</h4>
 											<ul>
-												<li><a href="#">Watches</a></li>
-												<li><a href="#">watches</a></li>
-												<li><a href="#">Blazers</a></li>
-												<li><a href="#">Suits</a></li>
-												<li><a href="#">Trousers</a></li>
-												<li><a href="#">Jeans</a></li>
-												<li><a href="#">Shirts</a></li>
-												<li><a href="#">Sweatshirts & Hoodies</a></li>
-												<li><a href="#">Swim Wear</a></li>
-												<li><a href="#">Accessories</a></li>
+                                                {% for category in categories %}
+                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                {% endfor%}
 											</ul>
 										</div>
 									</div>
@@ -102,16 +95,9 @@
 										<div class="h_nav">
 											<h4>Women</h4>
 											<ul>
-												<li><a href="#">Watches</a></li>
-												<li><a href="#">watches</a></li>
-												<li><a href="#">Blazers</a></li>
-												<li><a href="#">Suits</a></li>
-												<li><a href="#">Trousers</a></li>
-												<li><a href="#">Jeans</a></li>
-												<li><a href="#">Shirts</a></li>
-												<li><a href="#">Sweatshirts & Hoodies</a></li>
-												<li><a href="#">Swim Wear</a></li>
-												<li><a href="#">Accessories</a></li>
+												{% for category in categories %}
+                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                {% endfor%}
 											</ul>
 										</div>
 									</div>

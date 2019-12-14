@@ -476,8 +476,8 @@ ul.content-home li .item-html {
   color: #777;
 }
 ul.content-home li .item-html h3 {
-  color: #000;
   font-size: 69px;
+  color: white;
   font-style: italic;
   font-weight: 300;
   letter-spacing: -0.06em;
@@ -487,7 +487,7 @@ ul.content-home li .item-html h3 {
 }
 ul.content-home li .item-html h3 span {
   display: block;
-  color: #000;
+  color: white;
   font-size: 52px;
   font-style: italic;
   font-weight: 300;
@@ -497,6 +497,7 @@ ul.content-home li .item-html h3 span {
 }
 ul.content-home li .item-html p {
   margin-bottom: 17px;
+  color: white;
 }
 ul.content-home li .item-html button {
   background:#F9D9BE;
