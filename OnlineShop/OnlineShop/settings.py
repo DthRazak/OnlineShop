@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'goods',
     'profiles',
     'cart',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
 ]
 
 ROOT_URLCONF = 'OnlineShop.urls'
@@ -68,6 +78,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -129,6 +141,9 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
-LOGIN_URL = "login"
-LOGOUT_URL = "logout"
-LOGIN_REDIRECT_URL = "main"
+LOGIN_URL = "/profile/login"
+LOGOUT_URL = "/profile/logout"
+LOGIN_REDIRECT_URL = "/"
+
+SOCIAL_AUTH_GITHUB_KEY = '46d7afe91e04b547f8b4'
+SOCIAL_AUTH_GITHUB_SECRET = '19bad9c303ee120af48d99da2d120b7659c61ddc'

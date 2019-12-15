@@ -60,6 +60,14 @@
                     <div class="clearfix"> </div>
                 </div>
             </form>
+{#            <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a>#}
+            <div class="clearfix"> </div>
+            <div class="col-xs-4 col-sm-2">
+                <a href="{% url 'social:begin' 'github' %}" class="btn btn-lg btn-block omb_btn-github">
+                    <i class="fa fa-github visible-xs"></i>
+                    <span class="hidden-xs">Login with GitHub</span>
+                </a>
+            </div>
         </div>
    </div>
 {% endblock%}

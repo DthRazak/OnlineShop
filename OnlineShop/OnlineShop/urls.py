@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', include('main.urls')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^profile/', include('profiles.urls')),
     url(r'^good/', include('goods.urls')),
     url(r'^cart/', include('cart.urls')),

@@ -18,4 +18,7 @@ class Profile(models.Model):
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+    else:
+        instance.profile.first_name = instance.first_name
+        instance.profile.last_name = instance.last_name
     instance.profile.save()
