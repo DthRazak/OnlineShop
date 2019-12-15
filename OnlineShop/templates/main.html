@@ -39,16 +39,41 @@
             });
         });
     </script>
+    <script>$(document).ready(function (c) {
+        $("div[class^='close']").on('click', function (c) {
+            let id = this.className.slice(5);
+            let headerName = 'cart-header' + id;
+            $('div[class^=' + headerName + "]").fadeOut('slow', function (c) {
+                $('div[class^=' + headerName + "]").remove();
+            });
+            $.ajax({
+                url: "/cart/remove",
+                type: "POST",
+                data: { "id": id , 'csrfmiddlewaretoken': '{{ csrf_token }}' ,}
+            });
+        });
+    });
+    </script>
+    <script>
+        $(window).ready(function () {
+            $('input[name$="id_material"]').on('change', function (c) {
+                this.parent().setAttribute("background", "#F9D9BE");
+                this.parent().setAttribute("color", "#555");
+                this.parent().setAttribute("font-size", "0.85em");
+                this.parent().setAttribute("visibility", "hidden");
+            });
+        });
+    </script>
 {% endblock %}
 {% block content %}
 	<div class="banner">
 		<div class="container">
 			<div class="header_top">
 			   <div class="header_top_left">
-				  <div class="box_11"><a href="#">
+				  <div class="box_11"><a href="/cart">
 				  <h4><p>Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</p><img src="{% static 'images/bag.png' %}" alt=""/><div class="clearfix"> </div></h4>
 				  </a></div>
-				  <p class="empty"><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+				  <p class="empty"><a href="/cart/remove_all" class="simpleCart_empty">Empty Cart</a></p>
 				  <div class="clearfix"> </div>
 			   </div>
 				<div class="header_top_right">
