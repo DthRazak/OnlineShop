@@ -5,6 +5,7 @@
   <link href="{% static 'styles/style.css' %}" rel='stylesheet' type='text/css' />
   <link href="{% static 'styles/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
   <link href="{% static 'styles/flexslider.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{% static 'styles/component.css' %}" rel="stylesheet" type="text/css" media="all" />
 {% endblock %}
 {% block additional_fonts %}
   <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
@@ -77,13 +78,6 @@
 				  <div class="clearfix"> </div>
 			   </div>
 				<div class="header_top_right">
-					<div class="lang_list">
-					<select tabindex="4" class="dropdown">
-						<option value="" class="label" value="">$ Us</option>
-						<option value="1">Dollar</option>
-						<option value="2">Euro</option>
-					</select>
-					</div>
 					<ul class="header_user_info">
                         {% if not user.is_authenticated %}
 						<a class="login" href="/profile/login">
@@ -101,7 +95,7 @@
 					<!-- start search-->
 					<div class="search-box">
 					   <div id="sb-search" class="sb-search">
-						  <form>
+						  <form method="get" action="/good/catalog">
 							 <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
 							 <input class="sb-search-submit" type="submit" value="">
 							 <span class="sb-icon-search"> </span>
@@ -124,24 +118,14 @@
 				</div>
 				<div class="menu">
 					<ul class="megamenu skyblue">
-						<li><a class="color2" href="#">Goods</a>
+						<li><a class="color2" href="/good/catalog">Goods</a>
 							<div class="megapanel">
 								<div class="row">
 									<div class="col1">
 										<div class="h_nav">
-											<h4>Men</h4>
+											<h4>Categories</h4>
 											<ul>
                                                 {% for category in categories %}
-                                                    <li><a href="#">{{ category.name }}</a></li>
-                                                {% endfor%}
-											</ul>
-										</div>
-									</div>
-									<div class="col1">
-										<div class="h_nav">
-											<h4>Women</h4>
-											<ul>
-												{% for category in categories %}
                                                     <li><a href="#">{{ category.name }}</a></li>
                                                 {% endfor%}
 											</ul>
@@ -151,39 +135,21 @@
 										<div class="h_nav">
 											<h4>Trends</h4>
 											<ul>
-												<li class>
-													<div class="p_left">
-													  <img src="{% static 'images/p1.jpg' %}" class="img-responsive" alt=""/>
-													</div>
-													<div class="p_right">
-														<h4><a href="#">Denim shirt</a></h4>
-														<span class="item-cat"><small><a href="#">watches</a></small></span>
-														<span class="price">29.99 $</span>
-													</div>
-													<div class="clearfix"> </div>
-												</li>
-												<li>
-													<div class="p_left">
-													  <img src="{% static 'images/p2.jpg' %}" class="img-responsive" alt=""/>
-													</div>
-													<div class="p_right">
-														<h4><a href="#">Denim shirt</a></h4>
-														<span class="item-cat"><small><a href="#">watches</a></small></span>
-														<span class="price">29.99 $</span>
-													</div>
-													<div class="clearfix"> </div>
-												</li>
-												<li>
-													<div class="p_left">
-													  <img src="{% static 'images/p3.jpg' %}" class="img-responsive" alt=""/>
-													</div>
-													<div class="p_right">
-														<h4><a href="#">Denim shirt</a></h4>
-														<span class="item-cat"><small><a href="#">watches</a></small></span>
-														<span class="price">29.99 $</span>
-													</div>
-													<div class="clearfix"> </div>
-												</li>
+                                                {% for good in goods %}
+                                                    <li class>
+                                                        <div class="p_left">
+                                                            <img src="{{ good.image.url }}" style="height: 80px; width: auto;"
+                                                                 class="img-responsive" alt=""/>
+                                                        </div>
+                                                        <div class="p_right">
+                                                            <h4><a href="/good/{{ good.id }}">{{ good.name }}</a></h4>
+                                                            <span class="item-cat"><small><a
+                                                                    href="/good/{{ good.id }}">{{ good.category }}</a></small></span>
+                                                            <span class="price">{{ good.price }} $</span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </li>
+                                                {% endfor %}
 											</ul>
 										</div>
 									</div>
