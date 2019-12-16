@@ -11,6 +11,7 @@ class Good(models.Model):
     price = models.FloatField(db_index=True, verbose_name="Price")
     price_acc = models.FloatField(null=True, blank=True, verbose_name="Price with discount")
     in_stock = models.BooleanField(default=True, db_index=True, verbose_name="In stock")
+    comments = models.BooleanField(default=True, verbose_name="Comments status")
     featured = models.BooleanField(default=False, db_index=True, verbose_name="Recommended")
     image = models.ImageField(upload_to="goods/list", verbose_name="Main image")
 

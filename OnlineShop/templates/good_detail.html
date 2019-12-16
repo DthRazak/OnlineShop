@@ -110,13 +110,15 @@
                                         {% endfor %}
                                     </ul>
                                 </div>
-                                {% if is_bought %}
-                                    <form method="post" action="/good/comment">
-                                        {% csrf_token %}
-                                        <h3>Send comment</h3>
-                                        <textarea name="comment_text">Enter text here...</textarea>
-                                        <input type="submit" value="Send">
-                                    </form>
+                                {% if good.comments %}
+                                    {% if is_bought %}
+                                        <form method="post" action="/good/comment">
+                                            {% csrf_token %}
+                                            <h3>Send comment</h3>
+                                            <textarea name="comment_text">Enter text here...</textarea>
+                                            <input type="submit" value="Send">
+                                        </form>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         </div>
