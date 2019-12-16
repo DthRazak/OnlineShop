@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'profiles',
     'cart',
     'social_django',
+    'comments',
 ]
 
 MIDDLEWARE = [

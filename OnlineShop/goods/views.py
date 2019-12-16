@@ -1,23 +1,34 @@
 from django.core.paginator import Paginator
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
+from cart.models import Cart, CartItem
 from categories.models import Category
+from comments.models import Comment
 from goods.models import Good
+from profiles.models import Profile
 
 
-class GoodDetailView(TemplateView):
-    template_name = "good_detail.html"
+def good_detail_view(request, **kwargs):
+    context = dict()
+    try:
+        good = Good.objects.get(id=kwargs['pk'])
+        context["good"] = good
+        context["comments"] = Comment.objects.filter(good=good)[::1]
+        context["goods"] = Good.objects.filter(featured=True)[:3]
+        context["categories"] = Category.objects.all()[::1]
+        profile = Profile.objects.filter(user=request.user)[0]
+        carts = list(filter(lambda x: not x.is_active, Cart.objects.filter(profile=profile)))
+        ids = set()
+        for cart in carts:
+            for item in CartItem.objects.filter(cart=cart)[::1]:
+                ids.add(item.good.id)
+        context["is_bought"] = good.id in ids
+    except Good.DoesNotExist:
+        raise Http404("Good does not exist")
 
-    def get_context_data(self, **kwargs):
-        context = super(GoodDetailView, self).get_context_data(**kwargs)
-        try:
-            context["good"] = Good.objects.get(id=kwargs['pk'])
-        except Good.DoesNotExist:
-            raise Http404("Good does not exist")
-
-        return context
+    return render(request, 'good_detail.html', context)
 
 
 def catalog(request):
@@ -60,3 +71,17 @@ def catalog(request):
     context['page_range'] = list(paginator.page_range)
 
     return render(request, 'catalog.html', context)
+
+
+def add_comment(request):
+    if request.method == "POST" and request.user.is_authenticated:
+        text = request.POST.get('comment_text')
+        if text is not None:
+            comment = Comment()
+            comment.user = request.user
+            comment.text = text
+            comment.good = Good.objects.get(id=request.META.get('HTTP_REFERER').split('/')[-1])
+            comment.save()
+        return redirect(request.META.get('HTTP_REFERER'))
+    else:
+        return Http404()

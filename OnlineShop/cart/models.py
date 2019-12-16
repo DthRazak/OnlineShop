@@ -8,6 +8,7 @@ from goods.models import Good
 class Cart(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     total = models.FloatField(default=0.0)
+    is_active = models.BooleanField(default=True, verbose_name="Is active")
 
     def __str__(self):
         return "Cart - " + self.profile.user.username

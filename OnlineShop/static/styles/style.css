@@ -1996,7 +1996,7 @@ ul.qty li {
   font-weight: 400;
   float: right;
 }
-a.continue {
+button.continue {
   background:#F9D9BE;
   padding: 10px 20px;
   font-size: 1em;
@@ -2006,7 +2006,7 @@ a.continue {
   text-align: center;
   margin-bottom: 2em;
 }
-a.continue:hover{
+button.continue:hover{
   background:#E0BD9F;
 }
 .price-details {

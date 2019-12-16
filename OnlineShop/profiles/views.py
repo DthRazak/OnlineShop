@@ -1,5 +1,8 @@
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.shortcuts import render, redirect
+
+from categories.models import Category
+from goods.models import Good
 from profiles.forms import SignUpForm, LoginForm
 
 
@@ -21,7 +24,9 @@ def signup(request):
             return redirect('/')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    goods = Good.objects.filter(featured=True)[:3]
+    categories = Category.objects.all()[::1]
+    return render(request, 'signup.html', {'form': form, 'goods': goods, 'categories': categories})
 
 
 def login(request):
@@ -36,7 +41,9 @@ def login(request):
                 return redirect('/')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    goods = Good.objects.filter(featured=True)[:3]
+    categories = Category.objects.all()[::1]
+    return render(request, 'login.html', {'form': form, 'goods': goods, 'categories': categories})
 
 
 def logout(request):

@@ -1,7 +1,10 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse, BadHeaderError
 from django.shortcuts import render, redirect
+
+from categories.models import Category
 from contact.forms import ContactForm
+from goods.models import Good
 
 
 def email_view(request):
@@ -19,8 +22,12 @@ def email_view(request):
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('success')
-    return render(request, "contact.html", {'form': form})
+    goods = Good.objects.filter(featured=True)[:3]
+    categories = Category.objects.all()[::1]
+    return render(request, "contact.html", {'form': form, 'goods': goods, 'categories': categories})
 
 
 def success_view(request):
-    return render(request, "success.html")
+    goods = Good.objects.filter(featured=True)[:3]
+    categories = Category.objects.all()[::1]
+    return render(request, "success.html", {'goods': goods, 'categories': categories})
